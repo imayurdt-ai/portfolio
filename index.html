@@ -1,1 +1,389 @@
-See content variable
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Mayur Takalikar — QA Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Lora:ital,wght@1,500;1,600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons@10/fonts/simple-icons.min.css"/>
+<style>
+:root{
+  --bg:      #f1f0ff;
+  --em:      #4338ca;
+  --em2:     #818cf8;
+  --em3:     #a5b4fc;
+  --emDark:  #1e1b4b;
+  --mid:     #2d2a8a;
+  --dark:    #1a1830;
+  --glass:   rgba(245,243,255,.60);
+  --glassBd: rgba(255,255,255,.85);
+  --radius:  20px;
+  --shadow:  0 4px 28px rgba(67,56,202,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;color:var(--dark);overflow-x:hidden;font-size:17px}
+#waveCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.content{position:relative;z-index:1}
+.si{font-size:1.5rem;display:block;margin-bottom:7px;line-height:1}
+.nav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--em2);display:inline-block;margin-left:3px;vertical-align:middle}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 52px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(241,240,255,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(67,56,202,.12)}
+.nav-logo{font-size:.9rem;font-weight:800;color:var(--em);letter-spacing:-.3px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:.84rem;font-weight:600;color:var(--mid);text-decoration:none;opacity:.80;transition:opacity .2s,color .2s}
+.nav-links a:hover{opacity:1;color:var(--em)}
+.btn-hire{padding:9px 22px;border-radius:50px;font-size:.78rem;font-weight:700;background:var(--em);color:#fff;border:none;cursor:pointer;text-decoration:none;box-shadow:0 3px 16px rgba(67,56,202,.28);transition:transform .2s,box-shadow .2s}
+.btn-hire:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(67,56,202,.38)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:130px 52px 90px;text-align:center}
+.hero-inner{max-width:740px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(245,243,255,.65);border:1px solid rgba(255,255,255,.88);backdrop-filter:blur(14px);border-radius:50px;padding:8px 20px;font-size:.71rem;font-weight:700;color:var(--em);letter-spacing:.7px;text-transform:uppercase;margin-bottom:30px}
+.hero-tag-dot{width:7px;height:7px;border-radius:50%;background:var(--em2);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+h1.hero-name{font-size:clamp(2.6rem,6.5vw,4.6rem);font-weight:800;line-height:1.06;letter-spacing:-2px;color:var(--dark);margin-bottom:18px}
+h1.hero-name em{font-style:italic;font-family:'Lora',serif;color:var(--em)}
+.hero-role{font-size:clamp(1.0rem,2vw,1.2rem);font-weight:500;color:var(--mid);opacity:.90;margin-bottom:40px;line-height:1.65}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:14px 34px;border-radius:50px;font-size:.86rem;font-weight:700;background:var(--em);color:#fff;border:none;cursor:pointer;text-decoration:none;box-shadow:0 4px 22px rgba(67,56,202,.30);transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(67,56,202,.42)}
+.btn-ghost{padding:14px 34px;border-radius:50px;font-size:.86rem;font-weight:700;background:rgba(245,243,255,.62);border:1.5px solid rgba(67,56,202,.22);color:var(--em);cursor:pointer;text-decoration:none;backdrop-filter:blur(12px);transition:transform .2s,background .2s}
+.btn-ghost:hover{transform:translateY(-2px);background:rgba(255,255,255,.85)}
+section{padding:100px 52px;max-width:1120px;margin:0 auto}
+.sec-label{font-size:.72rem;font-weight:800;letter-spacing:2.8px;text-transform:uppercase;color:var(--em);opacity:.95;margin-bottom:8px}
+.sec-title{font-size:clamp(1.7rem,3.8vw,2.6rem);font-weight:800;letter-spacing:-.9px;color:var(--dark);margin-bottom:52px;line-height:1.12}
+.sec-title em{font-style:italic;font-family:'Lora',serif;color:var(--em)}
+.glass{background:var(--glass);border:1px solid var(--glassBd);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:var(--radius);box-shadow:var(--shadow)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.about-card{padding:32px}
+.about-card h3{font-size:.75rem;font-weight:800;color:var(--em);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.about-card p{font-size:.96rem;line-height:1.80;color:var(--mid);opacity:.96}
+.stat-row{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.55);border:1px solid rgba(67,56,202,.14);border-radius:14px;padding:12px 16px;text-align:center;min-width:72px}
+.stat-n{font-size:1.35rem;font-weight:800;color:var(--em);line-height:1}
+.stat-l{font-size:.68rem;font-weight:700;color:var(--mid);opacity:.82;margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:13px}
+.skill-tag{padding:14px 12px;border-radius:16px;text-align:center;font-size:.84rem;font-weight:700;color:var(--mid);background:rgba(245,243,255,.60);border:1px solid rgba(255,255,255,.85);backdrop-filter:blur(10px);transition:transform .22s,background .22s,box-shadow .22s;cursor:default}
+.skill-tag:hover{transform:translateY(-4px);background:rgba(255,255,255,.90);box-shadow:0 8px 22px rgba(67,56,202,.12)}
+.exp-list{display:flex;flex-direction:column;gap:18px}
+.exp-card{padding:28px 32px}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.exp-role{font-size:1.08rem;font-weight:800;color:var(--dark)}
+.exp-co{font-size:.85rem;font-weight:600;color:var(--em);margin-top:3px;opacity:.95}
+.exp-date{font-size:.76rem;font-weight:700;background:rgba(255,255,255,.75);border:1px solid rgba(67,56,202,.22);backdrop-filter:blur(8px);border-radius:50px;padding:5px 14px;color:var(--mid);white-space:nowrap;opacity:.95}
+.exp-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.exp-tag{font-size:.67rem;font-weight:700;background:rgba(67,56,202,.09);border:1px solid rgba(67,56,202,.18);border-radius:50px;padding:4px 12px;color:var(--em)}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:6px}
+.exp-bullets li{font-size:.92rem;line-height:1.72;color:var(--mid);opacity:.95;padding-left:18px;position:relative}
+.exp-bullets li::before{content:"→";position:absolute;left:0;color:var(--em2);font-size:.72rem;top:3px}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.proj-card{padding:28px;display:flex;flex-direction:column;gap:11px}
+.proj-icon{font-size:1.9rem}
+.proj-name{font-size:1.06rem;font-weight:800;color:var(--dark)}
+.proj-desc{font-size:.91rem;line-height:1.72;color:var(--mid);opacity:.94;flex:1}
+.proj-chips{display:flex;gap:7px;flex-wrap:wrap}
+.proj-chip{font-size:.66rem;font-weight:700;background:rgba(67,56,202,.09);border:1px solid rgba(67,56,202,.18);border-radius:50px;padding:3px 11px;color:var(--em)}
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.edu-card{padding:26px;text-align:center}
+.edu-icon{font-size:1.9rem;margin-bottom:10px}
+.edu-deg{font-size:.95rem;font-weight:800;color:var(--dark);margin-bottom:4px}
+.edu-inst{font-size:.74rem;font-weight:600;color:var(--em);margin-bottom:6px}
+.edu-year{font-size:.69rem;color:var(--mid);opacity:.55;background:rgba(255,255,255,.55);border:1px solid rgba(67,56,202,.12);border-radius:50px;padding:3px 12px;display:inline-block;margin-top:4px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-info{padding:32px;display:flex;flex-direction:column;gap:20px}
+.contact-row{display:flex;align-items:center;gap:14px}
+.c-icon{width:42px;height:42px;border-radius:13px;background:rgba(67,56,202,.10);border:1px solid rgba(67,56,202,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-label{font-size:.72rem;font-weight:800;color:var(--em);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;opacity:.95}
+.c-val{font-size:.92rem;font-weight:600;color:var(--mid);opacity:.96}
+.contact-form{padding:30px;display:flex;flex-direction:column;gap:12px}
+.contact-form input,.contact-form textarea{width:100%;padding:12px 16px;border-radius:13px;font-size:.84rem;font-family:inherit;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.85);color:var(--dark);outline:none;transition:border .2s,background .2s;resize:none}
+.contact-form input:focus,.contact-form textarea:focus{background:rgba(255,255,255,.85);border-color:rgba(67,56,202,.32)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--mid);opacity:.4}
+.contact-form textarea{height:108px}
+.btn-send{padding:13px;border-radius:13px;font-size:.85rem;font-weight:700;background:var(--em);color:#fff;border:none;cursor:pointer;font-family:inherit;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 18px rgba(67,56,202,.26)}
+.btn-send:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(67,56,202,.38)}
+footer{text-align:center;padding:40px 52px;font-size:.74rem;color:var(--mid);opacity:.45;border-top:1px solid rgba(67,56,202,.08)}
+@media(max-width:768px){nav{padding:0 18px}.nav-links{display:none}section{padding:72px 18px}.about-grid,.proj-grid,.contact-grid,.edu-grid{grid-template-columns:1fr}.hero{padding:110px 18px 60px}}
+</style>
+</head>
+<body>
+<canvas id="waveCanvas"></canvas>
+<div class="content">
+<nav>
+  <div class="nav-logo">MT<span class="nav-logo-dot"></span></div>
+  <div class="nav-links">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="btn-hire">Hire Me</a>
+</nav>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-tag-dot"></span>ISTQB Certified · Open to Work</div>
+    <h1 class="hero-name">Mayur<br><em>Takalikar</em></h1>
+    <p class="hero-role">QA Engineer · Automation Testing · Selenium · Java<br>Pune, India &nbsp;·&nbsp; 2+ Years Experience</p>
+    <div class="hero-btns">
+      <a href="#experience" class="btn-primary">View Experience</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</div>
+<section id="about">
+  <div class="sec-label">Who I Am</div>
+  <div class="sec-title">ISTQB Certified<br><em>QA Professional</em></div>
+  <div class="about-grid">
+    <div class="glass about-card">
+      <h3>Profile</h3>
+      <p>ISTQB-certified Software Tester with expertise in SDLC, STLC, and Agile methodologies. Skilled in UI, functional, and regression testing across Merchant Service Apps, Portals, E-commerce, and POS applications.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-n">2+</div><div class="stat-l">Yrs Exp</div></div>
+        <div class="stat"><div class="stat-n">ISTQB</div><div class="stat-l">Certified</div></div>
+        <div class="stat"><div class="stat-n">Agile</div><div class="stat-l">Practitioner</div></div>
+        <div class="stat"><div class="stat-n">3</div><div class="stat-l">Companies</div></div>
+      </div>
+    </div>
+    <div class="glass about-card">
+      <h3>Approach</h3>
+      <p>I design scalable automation frameworks, integrate CI/CD pipelines with Jenkins, and ensure high-quality software releases through comprehensive test strategies. Self-motivated, hard-working, and always ready for new challenges.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-n">Java</div><div class="stat-l">Automation</div></div>
+        <div class="stat"><div class="stat-n">CI/CD</div><div class="stat-l">Jenkins</div></div>
+        <div class="stat"><div class="stat-n">API</div><div class="stat-l">Testing</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="skills">
+  <div class="sec-label">Expertise</div>
+  <div class="sec-title">Skills &amp;<br><em>Technologies</em></div>
+  <div class="skills-grid">
+    <div class="skill-tag"><i class="si si-openjdk si" style="color:#ED8B00"></i>Java</div>
+    <div class="skill-tag"><i class="si si-selenium si" style="color:#43B02A"></i>Selenium</div>
+    <div class="skill-tag"><i class="si si-jenkins si" style="color:#D33833"></i>Jenkins</div>
+    <div class="skill-tag"><i class="si si-github si" style="color:#181717"></i>Git / GitHub</div>
+    <div class="skill-tag"><i class="si si-postman si" style="color:#FF6C37"></i>Postman</div>
+    <div class="skill-tag"><i class="si si-mysql si" style="color:#4479A1"></i>SQL</div>
+    <div class="skill-tag"><i class="si si-jira si" style="color:#0052CC"></i>Agile/Scrum</div>
+    <div class="skill-tag"><i class="si si-selenium si" style="color:#43B02A"></i>POM Framework</div>
+    <div class="skill-tag"><i class="si si-android si" style="color:#34A853"></i>Mobile QA</div>
+    <div class="skill-tag"><i class="si si-googlechrome si" style="color:#4285F4"></i>Cross-Browser</div>
+    <div class="skill-tag"><i class="si si-openjdk si" style="color:#ED8B00"></i>OOPs / Java</div>
+    <div class="skill-tag"><i class="si si-azuredevops si" style="color:#0078D4"></i>SDLC / STLC</div>
+    <div class="skill-tag"><i class="si si-jira si" style="color:#0052CC"></i>Bug Tracking</div>
+    <div class="skill-tag"><i class="si si-testng si" style="color:#E6522C"></i>TestNG</div>
+    <div class="skill-tag"><i class="si si-checkmarx si" style="color:#54B848"></i>Regression</div>
+    <div class="skill-tag"><i class="si si-notion si" style="color:#000000"></i>Test Design</div>
+  </div>
+</section>
+<section id="experience">
+  <div class="sec-label">Career</div>
+  <div class="sec-title">Work<br><em>Experience</em></div>
+  <div class="exp-list">
+    <div class="glass exp-card">
+      <div class="exp-top">
+        <div><div class="exp-role">Associate QA Engineer</div><div class="exp-co">RemoSys Infosystems Pvt. Ltd. · Remote</div></div>
+        <div class="exp-date">Apr 2024 — Present</div>
+      </div>
+      <div class="exp-tags"><span class="exp-tag">M360 EPI</span><span class="exp-tag">ISO360 EPI</span><span class="exp-tag">Merchant Portal</span></div>
+      <ul class="exp-bullets">
+        <li>Performed testing of web and mobile applications to validate functionality, usability, and performance.</li>
+        <li>Analysed user stories in sprint backlogs to ensure complete test coverage and acceptance criteria.</li>
+        <li>Executed functional, non-functional, regression, and re-testing to maintain product stability.</li>
+        <li>Designed and implemented test scenarios and test cases to validate application workflows.</li>
+        <li>Overseen defect life cycle through effective bug tracking, reporting, and follow-up until closure.</li>
+        <li>Developed and maintained a scalable hybrid test automation framework to enhance testing efficiency.</li>
+        <li>Implemented Java, Selenium, and TestNG to automate build processes and improve testing efficiency and coverage.</li>
+        <li>Integrated test automation with Jenkins, enabling automated builds and faster feedback cycles.</li>
+        <li>Monitored builds to identify and resolve issues promptly.</li>
+        <li>Documented QA processes, test results, and reports to ensure compliance, traceability, and knowledge sharing.</li>
+      </ul>
+    </div>
+    <div class="glass exp-card">
+      <div class="exp-top">
+        <div><div class="exp-role">QA Intern</div><div class="exp-co">RemoSys Infosystems Pvt. Ltd. · Remote</div></div>
+        <div class="exp-date">Aug 2023 — Mar 2024</div>
+      </div>
+      <div class="exp-tags"><span class="exp-tag">Estee Lauder</span><span class="exp-tag">WeVend Carwash / Parking / Kiosk</span><span class="exp-tag">E-commerce</span></div>
+      <ul class="exp-bullets">
+        <li>Evaluated Functional Requirement documents to clarify project objectives.</li>
+        <li>Developed the functional and UI test cases.</li>
+        <li>Generated detailed bug reports to document issues and expedite resolution.</li>
+        <li>Engagement in Scrum calls to review daily project progress and resolve challenges.</li>
+        <li>Utilised Java and Selenium for test automation to enhance testing efficiency.</li>
+        <li>Applied basic knowledge of API testing using Postman for effective validation.</li>
+        <li>Executed basic SQL queries to support data verification processes.</li>
+      </ul>
+    </div>
+    <div class="glass exp-card">
+      <div class="exp-top">
+        <div><div class="exp-role">QA Intern</div><div class="exp-co">Dutypar · Remote</div></div>
+        <div class="exp-date">Dec 2022 — Jun 2023</div>
+      </div>
+      <div class="exp-tags"><span class="exp-tag">Attendance App — DUTYPAR</span><span class="exp-tag">Face Recognition</span><span class="exp-tag">Location Tracking</span></div>
+      <ul class="exp-bullets">
+        <li>Analysed the Functional Requirement document to understand project scope and objectives.</li>
+        <li>Prepared test cases for modules in the current sprint.</li>
+        <li>Performed peer review on test cases and executed them.</li>
+        <li>Executed sanity testing, functional testing, and UI testing.</li>
+        <li>Generated detailed bug reports.</li>
+        <li>Performed re-testing and regression testing.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section id="projects">
+  <div class="sec-label">Work</div>
+  <div class="sec-title">Featured<br><em>Projects</em></div>
+  <div class="proj-grid">
+    <div class="glass proj-card">
+      <div class="proj-icon"><i class="si si-visa" style="font-size:2rem;color:#1A1F71"></i></div>
+      <div class="proj-name">M360 EPI — Merchant Support Platform</div>
+      <div class="proj-desc">An electronic payment service web application for monitoring merchant business activity. Covered functional, non-functional, regression, and re-testing across full sprint cycles.</div>
+      <div class="proj-chips"><span class="proj-chip">Selenium</span><span class="proj-chip">Java</span><span class="proj-chip">TestNG</span><span class="proj-chip">Jenkins</span></div>
+    </div>
+    <div class="glass proj-card">
+      <div class="proj-icon"><i class="si si-shopify" style="font-size:2rem;color:#96BF48"></i></div>
+      <div class="proj-name">ISO360 EPI — Merchant Onboarding Portal</div>
+      <div class="proj-desc">A merchant registration portal for ISO agents featuring complex multi-step onboarding workflows. Designed and implemented test scenarios validating end-to-end application workflows.</div>
+      <div class="proj-chips"><span class="proj-chip">POM</span><span class="proj-chip">Selenium</span><span class="proj-chip">Postman</span><span class="proj-chip">SQL</span></div>
+    </div>
+    <div class="glass proj-card">
+      <div class="proj-icon"><i class="si si-esteelauder" style="font-size:2rem;color:#1a1a1a"></i></div>
+      <div class="proj-name">Estee Lauder E-commerce</div>
+      <div class="proj-desc">Premium skincare e-commerce platform. Validated product listings, cart, checkout and payment flows across browsers and devices.</div>
+      <div class="proj-chips"><span class="proj-chip">Cross-browser</span><span class="proj-chip">UI Testing</span><span class="proj-chip">Regression</span></div>
+    </div>
+    <div class="glass proj-card">
+      <div class="proj-icon"><i class="si si-android" style="font-size:2rem;color:#34A853"></i></div>
+      <div class="proj-name">Dutypar — Attendance App</div>
+      <div class="proj-desc">Face recognition + GPS attendance application. Covered recognition accuracy, geo-fencing edge cases and unreliable network conditions.</div>
+      <div class="proj-chips"><span class="proj-chip">Mobile QA</span><span class="proj-chip">Face Recognition</span><span class="proj-chip">GPS Testing</span></div>
+    </div>
+    <div class="glass proj-card" style="grid-column:1/-1">
+      <div class="proj-icon"><i class="si si-amazonaws" style="font-size:2rem;color:#4338ca"></i></div>
+      <div class="proj-name">WeVend — Carwash · Parking · Vending Kiosks</div>
+      <div class="proj-desc">Unattended verticals solution for self-service environments covering carwash, parking, and vending kiosk applications. Prepared and executed comprehensive test automation suites for all three verticals, validating end-to-end self-service workflows, payment flows, hardware integrations, and edge cases across unattended environments.</div>
+      <div class="proj-chips"><span class="proj-chip">Test Automation</span><span class="proj-chip">Selenium</span><span class="proj-chip">Java</span><span class="proj-chip">Carwash</span><span class="proj-chip">Parking</span><span class="proj-chip">Vending Kiosk</span><span class="proj-chip">Self-Service</span><span class="proj-chip">Regression</span></div>
+    </div>
+  </div>
+</section>
+<section id="education">
+  <div class="sec-label">Background</div>
+  <div class="sec-title">Education &amp;<br><em>Certifications</em></div>
+  <div class="edu-grid">
+    <div class="glass edu-card">
+      <div class="edu-icon">🏆</div>
+      <div class="edu-deg">Software Testing (ISTQB)</div>
+      <div class="edu-inst">VCTC, Pune</div>
+      <div class="edu-year">November 2022</div>
+    </div>
+    <div class="glass edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-deg">BE Mechanical Engineering</div>
+      <div class="edu-inst">Savitribai Phule University, Pune</div>
+      <div class="edu-year">June 2019</div>
+    </div>
+    <div class="glass edu-card">
+      <div class="edu-icon">📐</div>
+      <div class="edu-deg">Diploma Mechanical Engg.</div>
+      <div class="edu-inst">KBP Polytechnic, Satara</div>
+      <div class="edu-year">June 2015</div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="sec-label">Let's Connect</div>
+  <div class="sec-title">Get in<br><em>Touch</em></div>
+  <div class="contact-grid">
+    <div class="glass contact-info">
+      <div class="contact-row">
+        <div class="c-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4338ca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+        <div><div class="c-label">Email</div><div class="c-val">mayur.takalikar3@gmail.com</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4338ca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <div><div class="c-label">Phone</div><div class="c-val">+91 88065 80816</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4338ca" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="c-label">Location</div><div class="c-val">Pune, Maharashtra, India</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div><div class="c-label">LinkedIn</div><div class="c-val">linkedin.com/in/mayurdt</div></div>
+      </div>
+    </div>
+    <div class="glass contact-form">
+      <input type="text" placeholder="Your Name"/>
+      <input type="email" placeholder="Your Email"/>
+      <input type="text" placeholder="Subject"/>
+      <textarea placeholder="Your message..."></textarea>
+      <button class="btn-send">Send Message →</button>
+    </div>
+  </div>
+</section>
+<footer>© 2026 Mayur Takalikar · QA Engineer · Pune, India</footer>
+</div>
+<script>
+const cvs=document.getElementById('waveCanvas');
+const ctx=cvs.getContext('2d');
+const DOT_R=67,DOT_G=56,DOT_B=202;
+const COLS=86,ROWS=54;
+const WAVES=[
+  {fx:.18,fz:.22,amp:1.10,spd:.008,ph:0.0},
+  {fx:.32,fz:.15,amp:.70,spd:.013,ph:2.1},
+  {fx:.12,fz:.38,amp:.82,spd:.006,ph:4.3},
+  {fx:.50,fz:.28,amp:.35,spd:.016,ph:1.5},
+  {fx:.25,fz:.42,amp:.52,spd:.010,ph:3.0},
+  {fx:.40,fz:.10,amp:.25,spd:.018,ph:5.1},
+];
+let W,H,scrollY=0,lastTime=0,elapsed=0;
+function resize(){W=cvs.width=window.innerWidth;H=cvs.height=window.innerHeight}
+window.addEventListener('resize',resize);
+window.addEventListener('scroll',()=>scrollY=window.scrollY);
+resize();
+function getH(col,row,T){
+  const nx=col/(COLS-1),nz=row/(ROWS-1);
+  let h=0;
+  WAVES.forEach(w=>h+=Math.sin(nx*Math.PI*2*w.fx*6+nz*Math.PI*2*w.fz*4+T*w.spd+w.ph)*w.amp);
+  return h;
+}
+function proj(col,row,hv){
+  const nx=(col/(COLS-1))-.5,t=row/(ROWS-1);
+  const horizon=H*(.38-scrollY*0.00010);
+  const spread=W*(.50+t*.65);
+  const sx=W*.5+nx*spread;
+  const sy=horizon+t*(H*.72)-hv*(H*.068)*(.35+t*1.1);
+  return{sx,sy,t};
+}
+function draw(ts){
+  if(!lastTime)lastTime=ts;
+  const dt=Math.min(ts-lastTime,32);lastTime=ts;
+  elapsed+=dt*.001;
+  const T=elapsed*60;
+  ctx.clearRect(0,0,W,H);
+  const atm=ctx.createRadialGradient(W*.5,H*.13,0,W*.5,H*.13,W*.76);
+  atm.addColorStop(0,'rgba(238,235,255,.62)');
+  atm.addColorStop(.38,'rgba(238,235,255,0)');
+  atm.addColorStop(1,'rgba(238,235,255,0)');
+  ctx.fillStyle=atm;ctx.fillRect(0,0,W,H);
+  for(let row=0;row<ROWS;row++){
+    for(let col=0;col<COLS;col++){
+      const h=getH(col,row,T);
+      const{sx,sy,t}=proj(col,row,h);
+      if(sx<-2||sx>W+2||sy<-4||sy>H+4)continue;
+      const dotR=0.30+t*1.10;
+      const op=Math.min(0.08+t*0.82+Math.max(0,h*0.12),0.92);
+      ctx.beginPath();
+      ctx.arc(sx,sy,dotR,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${DOT_R},${DOT_G},${DOT_B},${op})`;
+      ctx.fill();
+    }
+  }
+  const fade=ctx.createLinearGradient(0,H*.68,0,H);
+  fade.addColorStop(0,'rgba(241,240,255,0)');
+  fade.addColorStop(1,'rgba(241,240,255,.92)');
+  ctx.fillStyle=fade;ctx.fillRect(0,H*.68,W,H);
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>
